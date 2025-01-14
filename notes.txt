@@ -1,0 +1,12 @@
+mobile scrolling
+mobile screenshot scroll feture
+align and possitioning
+more visuals and stuff to add with jquery
+make the code cleaner and dynamic load
+use 3d animatons (prob)
+make it lightweight and lag free
+put data as json so im able to fetch from other websites
+make rrs feed for updates
+
+set up analytics (BUT NO GOOGLE)
+set cookies so it saves last state
