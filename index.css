@@ -1,0 +1,296 @@
+/* Base Styles - Applied for all devices */
+html, body {
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url("index.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    line-height: 1.6;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    & h1 {
+        margin: 0;
+    }
+}
+
+nav {
+    background: #444;
+    color: #fff;
+    padding: 0.5rem 0;
+    & ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+        & li {
+            margin: 0 1rem;
+            & a {
+                color: #fff;
+                text-decoration: none;
+                text-shadow: 1px 1px 4px #ffffff;
+            }
+        }
+    }
+}
+
+section {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.skills, .projects, .experience, .contact {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: 40%;
+    height: 20%;
+    padding: 10px;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex: 1 1 calc(50% - 2rem);
+    box-sizing: border-box;
+    border: 2px solid #ddd;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+a {
+    color: #0066cc;
+}
+
+.custom-underline {
+    position: relative;
+    display: inline-block;
+    font-size: 20px;
+    &::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: -10px;
+        width: 100px;
+        height: 4px;
+        background-color: #fff;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -10px;
+        height: 30px;
+        width: 3px;
+        background-color: #fff;
+    }
+}
+
+.socials {
+    font-size: 14px;
+    width: 20pc;
+    margin-top: 2px;
+    user-select: none;
+    & span:hover {
+        background: linear-gradient(90deg, #ff8c00, #ff0080); /* Different gradient on hover */
+        cursor: grab;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    & span:active {
+        color: #0066cc;
+        cursor: grabbing;
+    }
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    nav ul {
+        flex-direction: c; /* Stack navigation links vertically on smaller screens */
+        & li {
+            margin: 1rex; /* Add spacing between stacked navigation items */
+        }
+    }
+
+    section {
+        padding: 1rem; /* Reduce padding for smaller screens */
+    }
+
+    .card {
+        width: 100%; /* Make cards take full width on mobile */
+        flex: 1 1 100%;
+    }
+
+    .skills, .projects, .experience, .contact {
+        flex-direction: row;
+    }
+}
+
+/* Responsive Design for Desktop */
+@media (min-width: 769px) {
+    body {
+        font-size: 18px; /* Slightly larger font size for better readability */
+        & ul {
+            flex-direction: row; /* Ensure horizontal layout for navigation */
+            justify-content: space-between; /* Space out navigation items */
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    }
+
+    section {
+        max-width: 1200px; /* Allow larger sections for desktop */
+        padding: 3rem; /* Increase padding for spacious desktop layout */
+    }
+
+    .card {
+        width: 30%; /* Smaller cards to fit more on a single row */
+        flex: 1 1 calc(33.33% - 2rem); /* 3 cards per row on desktop */
+    }
+
+    footer {
+        font-size: 16px; /* Slightly larger footer text for desktops */
+    }
+
+    .skills, .projects, .experience, .contact {
+        flex-direction: row; /* Display elements side-by-side */
+        justify-content: space-around;
+    }
+
+    .socials {
+        font-size: 16px;
+        width: auto;
+    }
+}
+
+.fade-in-text {
+    opacity: 0; /* Start invisible */
+    transform: translateX(100px); /* Slide in from the right */
+    animation: fadeIn 1s ease-out forwards;
+    & span {
+        opacity: 0; /* Start invisible */
+        transform: translateX(100px); /* Slide in from the right */
+        animation: fadeIn 3s ease-out forwards;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(100px); /* Start far right */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* End in place */
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup container */
+.popup {
+    position: relative; /* For dragging */
+    background: none;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    animation: slideDown 0.3s ease-out;
+    word-wrap: break-word;
+    & button {
+        margin: 10px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+    & .confirm {
+        background-color: #28a745;
+        color: white;
+    }
+    & .confirm:hover {
+        background-color: #218838;
+    }
+    
+    & .cancel {
+        background-color: #dc3545;
+        color: white;
+    }
+    
+    & .cancel:hover {
+        background-color: #c82333;
+    }
+}
+
+/* Header for dragging */
+.popup-header {
+    background: linear-gradient(90deg, #800895, #4968da);
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    margin: -20px -30px 20px -30px; /* Matches padding to stretch header */
+    user-select: none; /* Prevents text selection while dragging */
+}
+
+/* Popup animation */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+body.active-popup *:not(.overlay):not(.overlay *):not(.popup):not(.popup *) {
+    filter: blur(1px);
+}

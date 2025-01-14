@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movable Popup</title>
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        /* Hidden overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Popup container */
+        .popup {
+            position: relative; /* For dragging */
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            animation: slideDown 0.3s ease-out;
+            cursor: grab; /* Indicates it can be dragged */
+        }
+
+        /* Header for dragging */
+        .popup-header {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            cursor: grab;
+            margin: -20px -30px 20px -30px; /* Matches padding to stretch header */
+            user-select: none; /* Prevents text selection while dragging */
+        }
+
+        /* Buttons styling */
+        .popup button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup .confirm {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .popup .confirm:hover {
+            background-color: #218838;
+        }
+
+        .popup .cancel {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .popup .cancel:hover {
+            background-color: #c82333;
+        }
+
+        /* Popup animation */
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button id="redirectBtn">Go to Another Page</button>
+
+    <!-- Confirmation popup -->
+    <div class="overlay" id="popupOverlay">
+        <div class="popup" id="popup">
+            <div class="popup-header">Drag me!</div>
+            <h3>Are you sure?</h3>
+            <p>You're about to be redirected to another page.</p>
+            <button class="confirm" id="confirmBtn">Yes, continue</button>
+            <button class="cancel" id="cancelBtn">No, stay here</button>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const redirectBtn = document.getElementById('redirectBtn');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popup = document.getElementById('popup');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+
+        // URL to redirect to
+        const redirectUrl = 'https://example.com';
+
+        // Show popup on button click
+        redirectBtn.addEventListener('click', () => {
+            popupOverlay.style.display = 'flex';
+        });
+
+        // Redirect when the confirm button is clicked
+        confirmBtn.addEventListener('click', () => {
+            window.location.href = redirectUrl;
+        });
+
+        // Close popup when the cancel button is clicked
+        cancelBtn.addEventListener('click', () => {
+            popupOverlay.style.display = 'none';
+        });
+
+        // Close popup if the user clicks outside the popup
+        popupOverlay.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = 'none';
+            }
+        });
+
+        // Dragging logic
+        let isDragging = false;
+        let startX, startY, initialLeft, initialTop;
+
+        const popupHeader = popup.querySelector('.popup-header');
+        popupHeader.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+
+            const rect = popup.getBoundingClientRect();
+            initialLeft = rect.left;
+            initialTop = rect.top;
+
+            document.body.style.cursor = 'grabbing';
+            popup.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+
+                popup.style.position = 'absolute';
+                popup.style.left = `${initialLeft + dx}px`;
+                popup.style.top = `${initialTop + dy}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.body.style.cursor = 'default';
+            popup.style.cursor = 'grab';
+        });
+    </script>
+
+</body>
+</html>

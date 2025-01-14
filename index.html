@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dqrkky - Resume</title>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <script typr="text/javascript" src="index.js"></script>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h1>Stauros Papadogiannopoulos</h1>
+            <p>Backend Developer</p>
+        </header>
+        <!-- Confirmation popup -->
+        <div class="overlay" id="popupOverlay">
+            <div class="popup" id="popup">
+                <div class="popup-header">Drag me!</div>
+                <h3>Are you sure?</h3>
+                <p id="redirecttext"></p>
+                <button class="confirm" id="confirmBtn">Yes, continue</button>
+                <button class="cancel" id="cancelBtn">No, stay here</button>
+            </div>
+        </div>
+        <section id="about">
+            <h2 class="custom-underline">About Me</h2>
+            <!--Dynamic load-->
+        </section>
+        <section id="contact">
+            <h2 class="custom-underline">Contact</h2>
+            <div class="contact">
+                <div class="card">
+                    <p>Feel free to reach out to me!</p>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p id="copyright"></p>
+        </footer>
+    </body>
+    <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", load);
+    </script>
+</html>
