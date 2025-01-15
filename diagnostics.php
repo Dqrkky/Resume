@@ -33,7 +33,7 @@ $handler->register("on_post", function (array $config) {
     global $handler;
     switch($config["path"]) {
         case '/':
-            $handler->config['body'] = json_decode($handler->config['body'], true);
+            if ($handler->config['body'] && $handler->config['body']['Content-Type'] == 'application/json') $handler->config['body'] = json_decode($handler->config['body'], true);
             error_log(json_encode($handler->config, JSON_PRETTY_PRINT));
             header("Content-Type: application/json");
             http_response_code(200);
