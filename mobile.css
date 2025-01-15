@@ -1,0 +1,26 @@
+/* mobile.css */
+body {
+    font-size: 16px;
+}
+
+nav {
+    & ul {
+        flex-direction: column;
+        & li {
+            margin: 1rem ;
+        }
+    }
+}
+
+section {
+    padding: 1rem;
+}
+
+.card {
+    width: 100%;
+    flex: 1 1 100%;
+}
+
+.skills, .projects, .experience, .contact {
+    flex-direction: row;
+}

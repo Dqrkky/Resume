@@ -1,0 +1,32 @@
+/* tablet.css */
+body {
+    font-size: 17px;
+}
+
+nav {
+    & ul {
+        justify-content: space-evenly;
+        flex-direction: row;
+    }
+}
+section {
+    max-width: 1000px;
+    padding: 2rem;
+}
+
+.card {
+    width: 48%;
+    flex: 1 1 calc(50% - 2rem);
+}
+
+
+.skills, .projects, .experience, .contact {
+    flex-wrap: wrap;
+    flex-direction: row; /* Display elements side-by-side */
+    justify-content: space-around;
+}
+
+.socials {
+    font-size: 16px;
+    width: auto;
+} 

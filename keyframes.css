@@ -1,0 +1,23 @@
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(100px); /* Start far right */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* End in place */
+    }
+}
+
+
+/* Popup animation */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

@@ -1,42 +1,42 @@
-const load = () => {
+const load = async () => {
     window.config = {
         "username": "Dqrkky",
         "about": [
             {
-                text: "👋 Hey there!",
-                span: "I’m a 20-year-old backend developer with a passion for programming that kicked off when I was just 12.\nEver since I wrote my first line of code, I’ve been hooked on solving complex problems and creating efficient backend systems that power seamless user experiences."
+                "text": "👋 Hey there!",
+                "span": "I’m a 20-year-old backend developer with a passion for programming that kicked off when I was just 12.\nEver since I wrote my first line of code, I’ve been hooked on solving complex problems and creating efficient backend systems that power seamless user experiences."
             },
             {
-                text: "💻 What I specialize in:",
-                span: "Designing and building scalable APIs and server-side architectures.\nWorking with databases (SQL, NoSQL) to ensure data reliability and performance.\nImplementing secure and efficient backend solutions with a focus on maintainability.\nExploring emerging technologies to stay ahead in the ever-evolving tech world."
+                "text": "💻 What I specialize in:",
+                "span": "Designing and building scalable APIs and server-side architectures.\nWorking with databases (SQL, NoSQL) to ensure data reliability and performance.\nImplementing secure and efficient backend solutions with a focus on maintainability.\nExploring emerging technologies to stay ahead in the ever-evolving tech world."
             },
             {
-                text: "🌟 What sets me apart:",
-                span: "A deep curiosity for understanding how things work under the hood.\nStrong attention to clean, maintainable, and well-documented code.\nAbility to quickly adapt to new technologies and frameworks.\nCollaborative spirit—I love working with teams and contributing to open-source projects."
+                "text": "🌟 What sets me apart:",
+                "span": "A deep curiosity for understanding how things work under the hood.\nStrong attention to clean, maintainable, and well-documented code.\nAbility to quickly adapt to new technologies and frameworks.\nCollaborative spirit—I love working with teams and contributing to open-source projects."
             },
             {
-                text: "⚙️ Tech Stack I Love:",
-                span: "Languages: Python, Node.js, Java, php\nFrameworks: Express.js, Flask, Hono.js\nDatabases: PostgreSQL, MongoDB, MySQL, Redis, MariaDB\nTools: Docker, Git, CI/CD Pipelines"
+                "text": "⚙️ Tech Stack I Love:",
+                "span": "Languages: Python, Node.js, Java, php\nFrameworks: Express.js, Flask, Hono.js\nDatabases: PostgreSQL, MongoDB, MySQL, Redis, MariaDB\nTools: Docker, Git, CI/CD Pipelines"
             },
             {
-                text: "🚀 My Journey So Far:",
-                span: "From building simple command-line programs as a kid to architecting full-fledged backend systems, coding has always been my creative outlet.\nI’ve worked on everything from personal side projects to collaborative, real-world applications."
+                "text": "🚀 My Journey So Far:",
+                "span": "From building simple command-line programs as a kid to architecting full-fledged backend systems, coding has always been my creative outlet.\nI’ve worked on everything from personal side projects to collaborative, real-world applications."
             },
             {
-                text: "🌱 What I’m learning:",
-                span: "I’m currently diving deeper into cloud computing (AWS) and microservices to sharpen my expertise in modern backend development."
+                "text": "🌱 What I’m learning:",
+                "span": "I’m currently diving deeper into cloud computing (AWS) and microservices to sharpen my expertise in modern backend development."
             },
             {
-                text: "📂 Check out my work:",
-                span: "Take a look at some of my projects and contributions on GitHub"
+                "text": "📂 Check out my work:",
+                "span": "Take a look at some of my projects and contributions on GitHub"
             },
             {
-                text: "💡 Fun Fact:",
-                span: "When I’m not coding, I’m probably brainstorming new ideas, gaming, or exploring how to automate something cool."
+                "text": "💡 Fun Fact:",
+                "span": "When I’m not coding, I’m probably brainstorming new ideas, gaming, or exploring how to automate something cool."
             },
             {
-                text: "Let’s connect and build something awesome together! 🚧✨",
-                text: "Made With ❤️ By Dqrkky"
+                "text": "Let’s connect and build something awesome together! 🚧✨",
+                "text": "Made With ❤️ By Dqrkky"
             }
         ],
         "contact": [
@@ -70,6 +70,17 @@ const load = () => {
             "cancelBtn": document.getElementById('cancelBtn'),
             "redirecttext": document.getElementById("redirecttext")
         },
+        "popup": {
+            "open": (text) => {
+                window.config.elements.redirecttext.innerText = text;
+                document.body.classList.add('active-popup');
+                window.config.elements.popupOverlay.style.display = 'flex';
+            },
+            "close": () => {
+                window.config.elements.popupOverlay.style.display = 'none';
+                document.body.classList.remove('active-popup');
+            }
+        },
         "date": new Date()
     };
     window.config.about.forEach((item, index) => {
@@ -92,15 +103,13 @@ const load = () => {
 
     // Close popup when the cancel button is clicked
     window.config.elements.cancelBtn.addEventListener('click', () => {
-        popupOverlay.style.display = 'none';
-        document.body.classList.remove('active-popup');
+        window.config.popup.close();
     });
 
     // Close popup if the user clicks outside the popup
     window.config.elements.popupOverlay.addEventListener('click', (e) => {
         if (e.target === window.config.elements.popupOverlay) {
-            window.config.elements.popupOverlay.style.display = 'none';
-            document.body.classList.remove('active-popup');
+            window.config.popup.close();
         }
     });
 
@@ -136,6 +145,7 @@ const load = () => {
         document.body.style.cursor = 'default';
         window.config.elements.popup.style.cursor = 'grab';
     });
+
     window.config.contact.forEach((contact) => {
         const _div = document.createElement("div");
         _div.classList.add("socials");
@@ -143,14 +153,12 @@ const load = () => {
         const _span = document.createElement("span");
         _span.textContent = contact.label;
         _span.onclick = () => {
-            confirmBtn.addEventListener('click', () => {
+            window.config.elements.confirmBtn.addEventListener('click', () => {
                 window.config.elements.popupOverlay.style.display = 'none';
                 document.body.classList.remove('active-popup');
                 window.open(contact.url, "_self");
             });
-            redirecttext.innerText = `You're about to be redirected to ${contact.url}.`
-            document.body.classList.add('active-popup');
-            popupOverlay.style.display = 'flex';
+            window.config.popup.open(`You're about to be redirected to ${contact.url}.`);
         };
         _div.appendChild(_span);
 

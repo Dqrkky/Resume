@@ -10,3 +10,8 @@ make rrs feed for updates
 
 set up analytics (BUT NO GOOGLE)
 set cookies so it saves last state
+
+mobile css
+pc css
+tablet css
+

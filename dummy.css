@@ -1,7 +1,4 @@
 /* Base Styles - Applied for all devices */
-
-@import url("keyframes.css");
-
 html, body {
     overflow-x: hidden; /* Prevent horizontal scrolling */
     width: 100%;
@@ -132,6 +129,70 @@ a {
     }
 }
 
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    nav ul {
+        flex-direction: c; /* Stack navigation links vertically on smaller screens */
+        & li {
+            margin: 1rex; /* Add spacing between stacked navigation items */
+        }
+    }
+
+    section {
+        padding: 1rem; /* Reduce padding for smaller screens */
+    }
+
+    .card {
+        width: 100%; /* Make cards take full width on mobile */
+        flex: 1 1 100%;
+    }
+
+    .skills, .projects, .experience, .contact {
+        flex-direction: row;
+    }
+}
+
+/* Responsive Design for Desktop */
+@media (min-width: 769px) {
+    body {
+        font-size: 18px; /* Slightly larger font size for better readability */
+        & ul {
+            flex-direction: row; /* Ensure horizontal layout for navigation */
+            justify-content: space-between; /* Space out navigation items */
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    }
+
+    section {
+        max-width: 1200px; /* Allow larger sections for desktop */
+        padding: 3rem; /* Increase padding for spacious desktop layout */
+    }
+
+    .card {
+        width: 30%; /* Smaller cards to fit more on a single row */
+        flex: 1 1 calc(33.33% - 2rem); /* 3 cards per row on desktop */
+    }
+
+    footer {
+        font-size: 16px; /* Slightly larger footer text for desktops */
+    }
+
+    .skills, .projects, .experience, .contact {
+        flex-direction: row; /* Display elements side-by-side */
+        justify-content: space-around;
+    }
+
+    .socials {
+        font-size: 16px;
+        width: auto;
+    }
+}
+
 .fade-in-text {
     opacity: 0; /* Start invisible */
     transform: translateX(100px); /* Slide in from the right */
@@ -140,6 +201,17 @@ a {
         opacity: 0; /* Start invisible */
         transform: translateX(100px); /* Slide in from the right */
         animation: fadeIn 3s ease-out forwards;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(100px); /* Start far right */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* End in place */
     }
 }
 
@@ -184,7 +256,7 @@ a {
         color: white;
     }
     & .confirm:hover {
-        background-color: #218838; 
+        background-color: #218838;
     }
     
     & .cancel {
@@ -205,6 +277,18 @@ a {
     border-radius: 10px 10px 0 0;
     margin: -20px -30px 20px -30px; /* Matches padding to stretch header */
     user-select: none; /* Prevents text selection while dragging */
+}
+
+/* Popup animation */
+@keyframes slideDown {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 body.active-popup *:not(.overlay):not(.overlay *):not(.popup):not(.popup *) {

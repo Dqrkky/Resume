@@ -1,0 +1,30 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dqrkky",
+    "description": "Backend developer with a passion for solving complex problems and creating efficient backend systems.",
+    "url": "https://github.com/Dqrkky",
+    "image": "https://example.com/avatar.jpg",
+    "jobTitle": "Backend Developer",
+    "knowsAbout": [
+        "Backend Development",
+        "APIs",
+        "Cloud Computing",
+        "Scalable Systems"
+    ],
+    "worksFor": {
+        "@type": "Organization",
+        "name": "UnDentified",
+        "description": "Providing backend development services for scalable systems.",
+        "url": "https://github.com/UnDentified-Network"
+    },
+    "sameAs": [
+        "mailto:staurospapadogiannopoulos@gmail.com",
+        "https://linkedin.com/in/staurosp",
+        "https://github.com/Dqrkky"
+    ],
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "staurospapadogiannopoulos@gmail.com"
+    }
+}
