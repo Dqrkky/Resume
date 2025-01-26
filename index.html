@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dqrkky - Resume</title>
-        <link rel="stylesheet" type="text/css" href="index.css" />
-        <script typr="text/javascript" src="index.js"></script>
-        <meta name="google-site-verification" content="XpTMIA4js678_YRKu-LG_hi6ZKFfUwkKr1IIMNnFA2s" />
+        <script typr="text/javascript" src="./javascript/index.js"></script>
+        <script typr="text/javascript" src="./javascript/config.js"></script>
+        <script typr="text/javascript" src="./javascript/performance.js"></script>
+        <link rel="stylesheet" type="text/css" href="./css/index.css" />
     </head>
     <body>
         <script type="application/ld+json">
@@ -26,7 +27,7 @@
                 ],
                 "worksFor": {
                     "@type": "Organization",
-                    "name": "UnDentified",
+                    "name": "@UnDentified",
                     "description": "Providing backend development services for scalable systems.",
                     "url": "https://github.com/UnDentified-Network"
                 },
@@ -68,6 +69,24 @@
             <h2 class="custom-underline">About Me</h2>
             <!--Dynamic load-->
         </section>
+        <section id="skills">
+            <h2 class="custom-underline">Skills</h2>
+            <div class="skills">
+                <!--Dynamic load-->
+            </div>
+        </section> 
+        <section id="projects">
+            <h2 class="custom-underline">Projects</h2>
+            <div class="projects">
+                <!--Dynamic load-->
+            </div>
+        </section>
+        <section id="experience">
+            <h2 class="custom-underline">Experience</h2>
+            <div class="experience">
+                <!--Dynamic load-->
+            </div>
+        </section>
         <section id="contact">
             <h2 class="custom-underline">Contact</h2>
             <div class="contact">
@@ -96,62 +115,14 @@
             const screenWidth = window.innerWidth;
             document.querySelectorAll('link[dynamic-styles]').forEach(link => link.remove());
             if (screenWidth <= 768) {
-                loadStylesheet("mobile.css").setAttribute('dynamic-styles', true);
+                loadStylesheet("./css/mobile.css").setAttribute('dynamic-styles', true);
             } else if (screenWidth <= 1024) {
-                loadStylesheet("tablet.css").setAttribute('dynamic-styles', true);
+                loadStylesheet("./css/tablet.css").setAttribute('dynamic-styles', true);
             } else {
-                loadStylesheet("desktop.css").setAttribute('dynamic-styles', true);
+                loadStylesheet("./css/desktop.css").setAttribute('dynamic-styles', true);
             };
         };
-
-        window.addEventListener("beforeunload", async (_event) => {
-            const performance = {
-                performance: {
-                    eventCounts: {
-                        size: _event.currentTarget.performance.eventCounts.size
-                    },
-                    memory: {
-                        jsHeapSizeLimit: _event.currentTarget.performance.memory.jsHeapSizeLimit,
-                        totalJSHeapSize: _event.currentTarget.performance.memory.totalJSHeapSize,
-                        usedJSHeapSize: _event.currentTarget.performance.memory.usedJSHeapSize
-                    },
-                    navigation: {
-                        redirectCount: _event.currentTarget.performance.navigation.redirectCount,
-                        type: _event.currentTarget.performance.navigation.type
-                    },
-                    timeOrigin: _event.currentTarget.performance.timeOrigin,
-                    timing: {
-                        connectEnd: _event.currentTarget.performance.timing.connectEnd,
-                        connectStart: _event.currentTarget.performance.timing.connectStart,
-                        domComplete: _event.currentTarget.performance.timing.domComplete,
-                        domContentLoadedEventEnd: _event.currentTarget.performance.timing.domContentLoadedEventEnd,
-                        domContentLoadedEventStart: _event.currentTarget.performance.timing.domContentLoadedEventStart,
-                        domInteractive: _event.currentTarget.performance.timing.domInteractive,
-                        domLoading: _event.currentTarget.performance.timing.domLoading,
-                        domainLookupEnd: _event.currentTarget.performance.timing.domainLookupEnd,
-                        domainLookupStart: _event.currentTarget.performance.timing.domainLookupStart,
-                        fetchStart: _event.currentTarget.performance.timing.fetchStart,
-                        loadEventEnd: _event.currentTarget.performance.timing.loadEventEnd,
-                        loadEventStart: _event.currentTarget.performance.timing.loadEventStart,
-                        navigationStart: _event.currentTarget.performance.timing.navigationStart,
-                        redirectEnd: _event.currentTarget.performance.timing.redirectEnd,
-                        redirectStart: _event.currentTarget.performance.timing.redirectStart,
-                        requestStart: _event.currentTarget.performance.timing.requestStart,
-                        responseEnd: _event.currentTarget.performance.timing.responseEnd,
-                        responseStart: _event.currentTarget.performance.timing.responseStart,
-                        secureConnectionStart: _event.currentTarget.performance.timing.secureConnectionStart,
-                        unloadEventEnd: _event.currentTarget.performance.timing.unloadEventEnd,
-                        unloadEventStart: _event.currentTarget.performance.timing.unloadEventStart
-                    }
-                }
-            };
-            await fetch("http://localhost:8000/diagnostics.php", {
-                "method": "POST",
-                "body": JSON.stringify(performance)
-            })
-        });
-        window.addEventListener("DOMContentLoaded", load);
         window.addEventListener("load", applyStyleBasedOnDevice);
-        window.addEventListener('resize', applyStyleBasedOnDevice);
+        window.addEventListener("resize", applyStyleBasedOnDevice);
     </script>
 </html>

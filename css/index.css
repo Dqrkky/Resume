@@ -1,6 +1,6 @@
 /* Base Styles - Applied for all devices */
 
-@import url("keyframes.css");
+@import url("./keyframes.css");
 
 html, body {
     overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -11,7 +11,7 @@ html, body {
 
 body {
     font-family: Arial, sans-serif;
-    background: url("index.jpg");
+    background: url("./../assets/index.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-repeat: no-repeat;
@@ -127,6 +127,21 @@ a {
         -webkit-text-fill-color: transparent;
     }
     & span:active {
+        color: #0066cc;
+        cursor: grabbing;
+    }
+}
+
+.element_url {
+    user-select: none;
+    &:hover {
+        background: linear-gradient(90deg, #ff8c00, #ff0080); /* Different gradient on hover */
+        cursor: grab;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    &:active {
         color: #0066cc;
         cursor: grabbing;
     }

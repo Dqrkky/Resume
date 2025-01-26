@@ -5,7 +5,7 @@ body {
 
 nav {
     & ul {
-        flex-direction: column;
+        flex-direction: row;
         & li {
             margin: 1rem ;
         }
@@ -22,5 +22,5 @@ section {
 }
 
 .skills, .projects, .experience, .contact {
-    flex-direction: row;
+    flex-direction: c;
 }
